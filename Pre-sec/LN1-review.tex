@@ -1,0 +1,53 @@
+%! Author = huanglinxian
+%! Date = 11/23/24
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+
+\title{FINC 305 LN1 - Math Review}
+\author{Linxian Huang}
+\date{\today}
+
+% Document
+\begin{document}
+
+\maketitle
+
+    Linear algebra is the core for running linear regressions with one or multi variables. \\
+\section{Operation Reviews}
+
+    \subsection{Matrix Addition}
+
+    \[
+(\mathbf{A} + \mathbf{B})_{ij} = a_{ij} + b_{ij}
+\]
+
+For example:
+    \[
+\mathbf{A} + \mathbf{B} =
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix}
++
+\begin{bmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22}
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{11} + b_{11} & a_{12} + b_{12} \\
+a_{21} + b_{21} & a_{22} + b_{22}
+\end{bmatrix}
+\]
+\\
+    Two matrices cannot be added unless they have the same dimensions.
+For example, a 2 * 3 matrix (2 rows and 3 columns) and a 3 * 4 matrix (3 rows and 4 columns) cannot be added because their dimensions do not match.
+    Matrix addition requires that the number of rows and columns in both matrices be identical so that corresponding elements can be added element-wise.
+
+
+
+\end{document}
