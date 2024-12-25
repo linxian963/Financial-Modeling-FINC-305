@@ -15,8 +15,58 @@
 \begin{document}
 
 \maketitle
+    Linear algebra forms the backbone of most of  techniques used in financial modeling, providing the tools necessary to understand 
+    and manipulate large datasets and complex systems. At its core, financial modeling often involves operations with matrices and vectors,
+     making linear algebra indispensable. \\
 
-    Linear algebra is the core for running linear regressions with one or multi variables. \\
+\section{Vectors}
+
+A \textit{vector} is an ordered finite list of numbers. Vectors are usually written as vertical arrays, surrounded by square or curved bracket, 
+as in \\
+
+\[
+\begin{bmatrix}
+-1.1 \\ 
+0.0 \\ 
+3.6 \\ 
+-7.2
+\end{bmatrix}
+\quad \text{or} \quad
+\begin{pmatrix}
+-1.1 \\ 
+0.0 \\ 
+3.6 \\ 
+-7.2
+\end{pmatrix}.
+\]
+
+\textit{Element} is the value that included in the vector. The \textit{size} (or \textit{dimensions}, \textit{length}) is the numbers of elements 
+that a vectors contains. For example, previous vector is 4-vector. 
+
+
+\section{matrices}
+
+A \textit{matrix} can be treated as a combination of multiple vectors with same size. For example, 
+
+\[
+\mathbf{A} =
+\begin{bmatrix}
+0 & 1 & -2.3 & 0.1 \\
+1.3 & 4 & -0.1 & 0 \\
+4.1 & -1 & 0 & 1.7
+\end{bmatrix}.
+\]
+Based on the matrix example, matrix A is constituted by 4 (numbers of columns) 3-vectors (numbers of rows).  \\
+
+In conclusion, a matrix is a 2-D array of numbers: A matrix with real-valued entries, \( m \) rows, and \( n \) columns.
+\( A_{ij} \) denotes the value in the matrix in the \( i \)-th row and \( j \)-th column. Values included in the matrix should 
+be real value,  which is 
+
+\[
+A \in \mathbb{R}^{m \times n}
+\]
+
+
 \section{Operation Reviews}
 
     \subsection{Matrix Addition}
