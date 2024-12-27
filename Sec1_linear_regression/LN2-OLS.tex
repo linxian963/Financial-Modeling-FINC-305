@@ -60,7 +60,7 @@ where:
 For a single observation \(i\), the model becomes:
 
 \[
-y_i = x_i^\top \beta + \epsilon_i
+y_i = x_i' \beta + \epsilon_i
 \]
 
 where:
@@ -73,8 +73,75 @@ where:
 
 \subsection{Assumption}
 
+\begin{itemize}
+    \item \textbf{Linearity}: the model specifies a linear relationship between $y$ and $x_1, \dots, x_k$.
+    Variables can be transformed or non-linear, but the relationship is linear. For examples,
+    \[
+    \ln y = \beta_1 + \beta_2 \ln x + \epsilon,\quad \text{or} \quad y = \alpha + \beta_1 x + \beta_2 x^2 + \epsilon
+    \] 
 
+    \item \textbf{Full Rank}: According to the matrix form of linear regression, $rank(X) = k$, which means each variable 
+    (i.e., a column in $X$ is linearly independent. Columns of $X$ are not linear functions of other columns. \\
+        \hspace{1cm} Notes: $x$ and $x^2$ are non-linear, so that's ok to present in a same regression \\
+        \hspace{1cm} Example: $y = \alpha + I\beta_1 + \frac{I}{2}\beta_2 + \epsilon$, converting to $y = \alpha + I(\beta_1+\frac{\beta_2}{2})+\epsilon$,
+        in such relationship, we can only identify $\tilde{\beta}$, which is $y = \alpha + I\tilde{\beta}+\epsilon$. \\
+        \hspace{1cm} Notes: It's ok for two variables (i.e., two columns of $X$) to be correlated as long as they are not linearly related.
+        
+    \item \textbf{Exogeneity of the Indenpendent Variables}: The expected value of the disturbance at observation $i$ 
+    is not a function of the independent variables. In other words, the independent variables do not carry useful information for predicting $epsilon_i$. \\
+    \[
+    E[\epsilon_i|x_{j1}, x_{j2}, \cdots, x_{jk})] = 0, \quad or \quad E[\epsilon|X] = 0
+    \]
 
+    \item \textbf{Homoscedasticity and Non-correlation}: Each disturbance $\epsilon_i$ has the same finite variance $\sigma^2$ and is uncorrelated with
+    every other disturbance $\epsilon_j$. (Note: `Constant variance' = `Homoscedasticity'. `Heteroscedasticity' is opposite.) For Example:
+    \[
+       Var[\epsilon_i|X] = \sigma^2, \quad \forall i = 1, \dots, n, \quad \text{and} \quad \text{Cov}\left(\epsilon_i, \epsilon_j \mid x \right) = 0
+        \]
+
+    \item \textbf{Normal Distribution}: The distrubances are normally distributed. 
+
+\end{itemize}
+
+\subsection{Ordinary Least Squares Estimation (OLS)}
+
+The \textbf{Ordinary least square} (OLS) methods chooses the estimates to minimize the sum of squared residuals. In the linear regression with one independent 
+variable only, the estimated OLS equation is written in a form:
+
+\[
+    \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x_1
+\]
+OLS tries to minimize the sume of squared residuals (SSR) ($\epsilon$), which is making 
+
+\[
+    \sum_{i=1}^{n} \left( y_i - \hat{\beta}_0 - \hat{\beta}_1 x_{i1}\right)^2
+\]
+as small as possible. The estimator is 
+
+\[
+    \hat{\beta}_1 = \frac{\sum_{i=1}^{n} \left( (x_i - \bar{x})(y_i - \bar{y}) \right)}{\sum_{i=1}^{n} \left( (x_i - \bar{x})^2 \right)}.
+\]
+
+If we have multiple independent variables in the linear model, our target is still minimizing the SSR by using a squared residual to penalizes
+large residuals, which is 
+\begin{align*}
+    SSR(\beta) &= (y - X\beta)'(y - X\beta) \\
+               &= (y' - \beta'X')(y - X\beta) \\
+               &= y'y - \beta'X'y - y'X\beta + \beta'X'X\beta \\
+               &= y'y - 2y'X\beta + \beta'X'X\beta \\
+               &= y'y - 2a'\beta + \beta'A\beta, \quad \text{where } a = X'y \text{ and } A = X'X.
+    \end{align*}
+
+\[
+\frac{\partial SSR(\beta)}{\partial \beta} = -2a + 2A\beta = 0
+\quad \Rightarrow \quad -2X'y + 2X'X\beta = 0,
+\]
+
+\[
+(X'X)\beta = X'y \quad \text{thus} \quad \hat{\beta} = (X'X)^{-1}X'y.
+\]
+In the above formula, \( \hat{\beta} \) is a vector containing all the estimators of \( \beta \), 
+\( X \) and \( y \) are matrices containing all the observations of \( X \)s and \( y \).
 
 
 \end{document}
