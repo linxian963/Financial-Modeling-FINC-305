@@ -7,7 +7,7 @@
 % Packages
 \usepackage{amsmath}
 
-\title{FINC 305 LN2 - Linear Regression}
+\title{FINC 305 LN2 - Linear Regression: Theory}
 \author{Linxian Huang}
 \date{\today}
 
@@ -71,7 +71,7 @@ where:
     \item \(\epsilon_i\) is a scalar error term.
 \end{itemize}
 
-\subsection{Assumption}
+\section{Assumption}
 
 \begin{itemize}
     \item \textbf{Linearity}: the model specifies a linear relationship between $y$ and $x_1, \dots, x_k$.
@@ -103,7 +103,7 @@ where:
 
 \end{itemize}
 
-\subsection{Ordinary Least Squares Estimation (OLS)}
+\section{Ordinary Least Squares Estimation (OLS)}
 
 The \textbf{Ordinary least square} (OLS) methods chooses the estimates to minimize the sum of squared residuals. In the linear regression with one independent 
 variable only, the estimated OLS equation is written in a form:
@@ -142,6 +142,62 @@ large residuals, which is
 \]
 In the above formula, \( \hat{\beta} \) is a vector containing all the estimators of \( \beta \), 
 \( X \) and \( y \) are matrices containing all the observations of \( X \)s and \( y \).
+
+
+\section{Goodness of Fit}
+The most frequent measure of goodness of fit (e.g., how much of the variation in y is explained by 
+variation of x's in linear model) is the R-Square ($R^2$). To calculate the $R^2$, we need to determine:
+
+\begin{itemize}
+    \item \textbf{Total Sum of Squares(SST)}, $SST =  \sum_{i=1}^{n} \left( y_i - \bar{y}\right)^2$ 
+    \item \textbf{Explained Sum of Squares (SSE)}, $SSE =  \sum_{i=1}^{n} \left( \hat{y}_i - \bar{y}\right)^2$
+    \item \textbf{Sum of Square residuals (SSR)}, $SSR =  \sum_{i=1}^{n} \left( y_i - x_i\hat{\beta}\right)^2$
+    \item \textbf{SST = SSR+SSE}
+\end{itemize}
+For some notations, the predicted $y_i$ is $\hat{y}_i=x_i\hat{\beta}$, $y_i=x_i\hat{\beta}+e_i$, where $e_i=\hat{\epsilon_i}$ is the 
+predicted residual, then $y_i=\hat{y}_i+e_i$. \\
+
+The percentage of variation of y explained by regression is:
+\[
+R^2=\frac{SSE}{SST} = 1 - \frac{SSR}{SST}
+\]
+
+While the $R^2$ is the standard measure of fit, it has the potentially unattractive feature that it always increase with more x's (independent variables).
+Recall the equation to calculate $R^2$, 
+ \[
+R^2= 1 - \frac{SSR}{SST} = 1- \frac{\hat{\sigma_\epsilon}^2}{\sigma_y^2}
+\]
+But it doesn't correct because these are biased estimate of these variances. To generate unbiased estimation, we should have 
+unbiased $\hat{\sigma_\epsilon}^2=\frac{SSR}{n-k-1}$, and unbiased $\sigma_y^2=\frac{SST}{n-1}$, where k is the number of regressors 
+on the right hand side of the equation, n is the number of observations. Then substitute back to previous equation,
+
+\[
+    \bar{R^2}= 1 - \frac{SSR/(n-k-1)}{SST/(n-1)} = 1- \frac{n-1}{n-k-1}\times(1-R^2)
+    \]
+
+    \begin{itemize}
+        \item The first thing that we can notice is that \( \frac{n-1}{n-k-1} \) is always greater than 1. Therefore, \( \bar{R}^2 \) is always less than \( R^2 \).
+        
+        \item This "penalizes" are measured by decreasing in the number of parameters (k). 
+        
+        \item By adding a new regressor in the equation, \( SSR \) falls, which will increase \( \bar{R}^2 \). On the other hand, \( \frac{n-1}{n-k-1} \) increases as we add one more regressor, which will decrease \( \bar{R}^2 \). Whether \( \bar{R}^2 \) increases or decreases depends on which of these two effects is stronger.
+        
+        \item \( \bar{R}^2 \) can be negative. Whenever \( \frac{SSR}{TSS} \) is large enough that it may not be able to offset \( \frac{n-1}{n-k-1} \), \( \frac{n-1}{n-k-1} \cdot \frac{SSR}{TSS} \) may be greater than 1, which will result in \( \bar{R}^2 < 0 \).
+    \end{itemize}
+
+
+\section{Potential Issues in Linear Regression}
+
+
+\subsection{Multicollinearity}
+
+
+\subsection{Heteroscedasticity}
+
+
+\subsection{Overfitting}
+
+
 
 
 \end{document}
