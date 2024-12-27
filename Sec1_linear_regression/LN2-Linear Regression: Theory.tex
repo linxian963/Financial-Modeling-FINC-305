@@ -186,11 +186,24 @@ on the right hand side of the equation, n is the number of observations. Then su
     \end{itemize}
 
 
-\section{Potential Issues in Linear Regression}
+\section{Potential Issues in Linear Regression (Tentative)}
 
 
 \subsection{Multicollinearity}
-
+Multicollinearity occurs when two or more independent variables in a regression model are highly correlated. This makes it difficult for the model to isolate the effect 
+of each independent variable on the dependent variable. For example, you are predicting a company’s stock price based on variables net income, total cost and total revenue. Then
+\[R_i=\beta_1NI_i+\beta_2TC_i+\beta_3TR_i\]
+However, Net income also can be determined by:
+\[NI_i=TR_i-TC_i\]
+Since net income is determined by total revenue and total cost, which are highly correlated, multicollinearity will exist. \\
+The existence of multicollinearity may inflate the \textbf{standard errors} of the estimated coefficients, making them statistically insignificant even when they may be meaningful. Also, 
+it reduces the interpretability of the coefficients because it becomes unclear how much each variable contributes uniquely to the dependent variable. \\
+To detect multicollinearity, we apply \textbf{Variance Inflation Factor (VIF)}, which is calculated by:
+\[
+VIF = \frac{1}{1-R^2}
+\]
+A $VIF > 10$ is a common threshold for severe multicollinearity. To solve multicollinearity, you can either remove redundant variables, or combine two high-correlated variables as a new features
+to regress.
 
 \subsection{Heteroscedasticity}
 
