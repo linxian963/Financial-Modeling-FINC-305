@@ -20,11 +20,56 @@
    such as "how return of Apple's stock change when the market portfolio return changes." Based on this consideration, 
    \textit{y} is called the \textbf{dependent variable}, the \textbf{independent variable}, \textbf{response variable}, or
    \textbf{predicted variable}. \textit{x} is called \textbf{independent variable}, the \textbf{explanatory variable}, 
-   the \textbf{control variable}, the \textbf{predictor variable} or the \textbf{regressor}. In this lecture, we will go further
+   the \textbf{control variable}, the \textbf{predictor variable} or the \textbf{regressor}. Also, we can easiliy imagine that
+   it has more than one factor that can significantly influence Apple's stock return. In this lecture, we will go further
    to review and study simple and multiple regresssions, discussing potential applications, and how to inprove the explanatory 
    and predictive power of linear models you build. \\
 
 \section{Simple and Multiple Linear Regression}
+
+Linear regression model tries to explain a \textit{dependent variable} (y) and one or more independent variables $x_i$. Just like 
+how I interpreted previously, it has lots of terminology get used. A generic form of linear regression is:
+
+\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+\]
+
+where:
+\begin{itemize}
+    \item \(y\) is the dependent variable,
+    \item \(\beta_0\) is the intercept,
+    \item \(\beta_1, \beta_2, \dots, \beta_p\) are the coefficients,
+    \item \(x_1, x_2, \dots, x_p\) are the independent variables,
+    \item \(\epsilon\) is the error term.
+\end{itemize}
+
+By converting this regression model to a matrix form, it can be interpreted as:
+
+\[
+Y = X \beta + \epsilon
+\]
+
+where:
+\begin{itemize}
+    \item \(Y\) is an \(n \times 1\) vector of dependent variables,
+    \item \(X\) is an \(n \times k\) matrix of independent variables,
+    \item \(\beta\) is a \(k \times 1\) vector of coefficients,
+    \item \(\epsilon\) is an \(n \times 1\) vector of errors.
+\end{itemize}
+
+For a single observation \(i\), the model becomes:
+
+\[
+y_i = x_i^\top \beta + \epsilon_i
+\]
+
+where:
+\begin{itemize}
+    \item \(y_i\) is a scalar dependent variable,
+    \item \(x_i\) is a \(k \times 1\) vector of independent variables,
+    \item \(\beta\) is a \(k \times 1\) vector of coefficients,
+    \item \(\epsilon_i\) is a scalar error term.
+\end{itemize}
 
 \subsection{Assumption}
 
