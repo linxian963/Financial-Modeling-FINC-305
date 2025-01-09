@@ -6,6 +6,7 @@
 
 % Packages
 \usepackage{amsmath}
+\usepackage{graphicx}
 
 \title{FINC 305 LN2 - Linear Regression: Theory}
 \author{Linxian Huang}
@@ -188,9 +189,11 @@ on the right hand side of the equation, n is the number of observations. Then su
 
 \section{Potential Issues in Linear Regression (Tentative)}
 
+Your estimation of linear regression model may be biased or inconsistent because of the violation of the assumptions. Here are some potential issues that you may encounter:
 
 \subsection{Multicollinearity}
-Multicollinearity occurs when two or more independent variables in a regression model are highly correlated. This makes it difficult for the model to isolate the effect 
+
+Recall the assumption of linear regression that the independent variables are not linearly related (Assumption of Full Rank). Multicollinearity occurs when two or more independent variables in a regression model are highly correlated. This makes it difficult for the model to isolate the effect 
 of each independent variable on the dependent variable. For example, you are predicting a company’s stock price based on variables net income, total cost and total revenue. Then
 \[R_i=\beta_1NI_i+\beta_2TC_i+\beta_3TR_i\]
 However, Net income also can be determined by:
@@ -207,9 +210,19 @@ to regress.
 
 \subsection{Heteroscedasticity}
 
+Recall the assumption of linear regression that the error terms are homoscedastic (Assumption of Homoscedasticity). 
+Heteroscedasticity occurs when the variance of the residuals is not constant across all levels of the independent variables. This violates the assumption of homoscedasticity. In other words, the error terms are not normally distributed.
+For example, the residuals may have a larger variance for higher values of the independent variable than for lower values. This can lead to biased and inconsistent estimates of the coefficients. \\
+
+To detect heteroscedasticity, you can plot the residuals against the predicted values. If the residuals exhibit a pattern, such as a cone shape or a funnel shape, this may indicate heteroscedasticity. \\
+To solve heteroscedasticity, you can apply \textbf{Weighted Least Squares (WLS)} method, which assigns different weights to the observations based on the variance of the residuals. (Will not cover in this lecture)
 
 \subsection{Overfitting}
 
+Overfitting occurs when a model learns the noise in the training data rather than the underlying pattern. This can happen when the model is too complex relative to the amount of training data. As a result, the model may perform well on the training data but poorly on new, unseen data. \\
+For example, you want to predict a company's stock price based on the company's financial data. You build a model with many independent variables, such as net income, total revenue, total cost, number of employees, and so on. If the model is too complex, it may capture the noise in the training data rather than the true relationship between the independent variables and the dependent variable. 
+As the model becomes more complex, it may fit the training data better, but it may not generalize well to new data, leading to overfitting. \\
+To detect overfitting, you can compare the model's performance on the training data and the test data. If the model performs significantly better on the training data than the test data, this may indicate overfitting. \\
 
 
 
