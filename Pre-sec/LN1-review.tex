@@ -6,6 +6,7 @@
 
 % Packages
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 \title{FINC 305 LN1 - Math Review}
 \author{Linxian Huang}
@@ -18,6 +19,9 @@
     Linear algebra forms the backbone of most of  techniques used in financial modeling, providing the tools necessary to understand 
     and manipulate large datasets and complex systems. At its core, financial modeling often involves operations with matrices and vectors,
      making linear algebra indispensable. \\
+
+    This document provides a brief review of the basic concepts of linear algebra, including vectors, matrices, and operations on them.
+
 
 \section{Vectors}
 
@@ -56,6 +60,7 @@ A \textit{matrix} can be treated as a combination of multiple vectors with same 
 4.1 & -1 & 0 & 1.7
 \end{bmatrix}.
 \]
+
 Based on the matrix example, matrix A is constituted by 4 (numbers of columns) 3-vectors (numbers of rows).  \\
 
 In conclusion, a matrix is a 2-D array of numbers: A matrix with real-valued entries, \( m \) rows, and \( n \) columns.
@@ -66,8 +71,37 @@ be real value,  which is
 A \in \mathbb{R}^{m \times n}
 \]
 
+\section{Scalars}
 
-\section{Operation Reviews}
+A \textit{scalar} is a single number, as opposed to a vector or matrix. Scalars are usually written in italics, as in \( c \) or \( \alpha \).
+Scalars can be added, subtracted, multiplied, and divided in the same way as real numbers. For example,
+
+\[
+c = 3.14
+\]
+
+
+
+\section{Matrix Operations}
+
+    \subsection{Matrix Transposition}
+
+    The \textit{transpose} of a matrix is a new matrix whose rows are the columns of the original. For example, 
+
+    \[
+\mathbf{A} =
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix}
+\quad \text{then} \quad
+\mathbf{A}^T =
+\begin{bmatrix}
+a_{11} & a_{21} \\
+a_{12} & a_{22}
+\end{bmatrix}
+\]
+
 
     \subsection{Matrix Addition}
 
@@ -93,14 +127,205 @@ a_{11} + b_{11} & a_{12} + b_{12} \\
 a_{21} + b_{21} & a_{22} + b_{22}
 \end{bmatrix}
 \]
-\\
-    Two matrices cannot be added unless they have the same dimensions.
+Two matrices cannot be added unless they have the same dimensions.
 For example, a 2 * 3 matrix (2 rows and 3 columns) and a 3 * 4 matrix (3 rows and 4 columns) cannot be added because their dimensions do not match.
     Matrix addition requires that the number of rows and columns in both matrices be identical so that corresponding elements can be added element-wise.
 
 
-    \section{Practice}
-    1. Let
+    \subsection{Matrix Multiplication}
+
+    \[
+(\mathbf{A} \mathbf{B})_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj}
+\]
+
+For example:
+    \[
+\mathbf{A} \mathbf{B} =
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix}
+\begin{bmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22}
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{11} b_{11} + a_{12} b_{21} & a_{11} b_{12} + a_{12} b_{22} \\
+a_{21} b_{11} + a_{22} b_{21} & a_{21} b_{12} + a_{22} b_{22}
+\end{bmatrix}
+\]
+
+    \subsection{Matrix Division}
+
+    Matrix division is not defined in the same way as matrix multiplication. Instead, matrix division is defined as the multiplication of the first matrix by the inverse of the second matrix.
+    The inverse of a matrix is a matrix that, when multiplied with the original matrix, gives an identity matrix. The inverse of a matrix is denoted as \( A^{-1} \). The inverse of a matrix is defined only for square matrices.
+    A square matrix is a matrix with the same number of rows and columns. The inverse of a matrix is calculated using the following formula:
+
+    \[
+    A A^{-1} = A^{-1} A = I
+    \]
+
+    where \( I \) is the identity matrix. The identity matrix is a square matrix in which all the elements of the principal diagonal are ones and all other elements are zeros.
+    The identity matrix is denoted as \( I \) or \( I_n \), where \( n \) is the size of the identity matrix. For example, the 3 * 3 identity matrix is:
+
+
+    \[
+    I_3 =
+    \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+    \end{bmatrix}
+    \]
+
+    \subsection{Matrix Multiplication by a Scalar}
+
+    \[
+(c \mathbf{A})_{ij} = c a_{ij}
+\]
+
+For example:
+    \[
+3 \mathbf{A} =
+3 \begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix}
+=
+\begin{bmatrix}
+3 a_{11} & 3 a_{12} \\
+3 a_{21} & 3 a_{22}
+\end{bmatrix}
+\]
+
+    \subsection{Matrix Division by a Scalar}
+
+    \[
+\left( \frac{\mathbf{A}}{c} \right)_{ij} = \frac{a_{ij}}{c}
+\]
+
+For example:
+    \[
+\frac{\mathbf{A}}{3} =
+\frac{1}{3} \begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{a_{11}}{3} & \frac{a_{12}}{3} \\
+\frac{a_{21}}{3} & \frac{a_{22}}{3}
+\end{bmatrix}
+\]
+
+
+    \subsection{Hadamard product}
+
+    The Hadamard product is the product of two matrices of the same dimensions. The Hadamard product is denoted by the symbol \( \circ \) and is calculated as follows:
+
+   
+    \[
+\mathbf{A} \circ \mathbf{B} =
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix}
+\circ
+\begin{bmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22}
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{11} b_{11} & a_{12} b_{12} \\
+a_{21} b_{21} & a_{22} b_{22}
+\end{bmatrix}
+
+\]
+
+For matrices of different dimensions ($m \times n$ and $p \times q$, where $m \neq p$ or $n \neq q$), the Hadamard product is undefined.
+
+\section{Matrix Properties}
+
+    \subsection{Commutative Property}
+
+    Matrix addition is commutative, which means that the order of the matrices does not matter. For example, for two matrices \( \mathbf{A} \) and \( \mathbf{B} \):
+
+    \[
+\mathbf{A} + \mathbf{B} = \mathbf{B} + \mathbf{A}
+\]
+
+    Matrix multiplication is not commutative, which means that the order of the matrices matters. For example, for two matrices \( \mathbf{A} \) and \( \mathbf{B} \):
+
+    \[
+\mathbf{A} \mathbf{B} \neq \mathbf{B} \mathbf{A}
+\]
+
+    \subsection{Associative Property}
+
+    Matrix addition is associative, which means that the grouping of the matrices does not matter. For example, for three matrices \( \mathbf{A} \), \( \mathbf{B} \), and \( \mathbf{C} \):
+
+    \[
+(\mathbf{A} + \mathbf{B}) + \mathbf{C} = \mathbf{A} + (\mathbf{B} + \mathbf{C})
+\]
+
+    Matrix multiplication is associative, which means that the grouping of the matrices does not matter. For example, for three matrices \( \mathbf{A} \), \( \mathbf{B} \), and \( \mathbf{C} \):
+
+    \[
+(\mathbf{A} \mathbf{B}) \mathbf{C} = \mathbf{A} (\mathbf{B} \mathbf{C})
+\]
+
+    \subsection{Distributive Property}
+
+    Matrix multiplication is distributive over matrix addition, which means that the following property holds:
+
+    \[
+\mathbf{A} (\mathbf{B} + \mathbf{C}) = \mathbf{A} \mathbf{B} + \mathbf{A} \mathbf{C}
+\]
+
+    \[
+(\mathbf{A} + \mathbf{B}) \mathbf{C} = \mathbf{A} \mathbf{C} + \mathbf{B} \mathbf{C}
+
+\]
+
+
+\section{Solving Systems of Linear Equations}
+
+    A system of linear equations is a set of equations that can be written in the form:
+
+    \[
+a_{11} x_1 + a_{12} x_2 + \ldots + a_{1n} x_n = b_1
+\]
+\[
+a_{21} x_1 + a_{22} x_2 + \ldots + a_{2n} x_n = b_2
+\]
+\[
+\vdots
+\]
+\[
+a_{m1} x_1 + a_{m2} x_2 + \ldots + a_{mn} x_n = b_m
+\]
+
+    The system of linear equations can be written in matrix form as:
+
+    \[
+\mathbf{A} \mathbf{x} = \mathbf{b}
+\]
+
+    where \( \mathbf{A} \) is the matrix of coefficients, \( \mathbf{x} \) is the vector of variables, and \( \mathbf{b} \) is the vector of constants.
+
+    The system of linear equations can be solved by finding the inverse of the matrix of coefficients and multiplying it by the vector of constants:
+
+    \[
+\mathbf{x} = \mathbf{A}^{-1} \mathbf{b}
+\]
+
+    If the matrix of coefficients is not invertible, the system of linear equations may have no solution or infinitely many solutions.
+
+
+\section{Practice}
+1. Let
 \[
 A =
 \begin{pmatrix}
@@ -115,6 +340,17 @@ B =
 \end{pmatrix}.
 \]
 
-Find \( A + B \), \( 3B \), \( -2B \), \( A + 2B \), \( A - B \), \( B - A \).
+Find \( A + B \), \( 3B \), \( -2B \), \( A + 2B \), \( A - B \), \( B - A \), \( A \cdot B \), \(A \cdot B^T\), and \(A \cdot B^{-1}\). \\
+
+
+2. Solve the system of linear equations:
+\[
+\begin{aligned}
+2x + 3y - z &= 1 \\
+4x - y + 5z &= 2 \\
+-3x + 2y + 4z &= 3
+\end{aligned}
+\]
+
 
 \end{document}
